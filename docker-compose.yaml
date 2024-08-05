@@ -1,0 +1,17 @@
+services:
+  service_name:
+    build:
+      context: .
+      dockerfile: ./docker_utils/Dockerfile
+    volumes:
+      - /dev:/dev
+      - $HOME/workspace_dir:/home/shir/workspace_dir
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=${DISPLAY}
+      - TZ=Asia/Jerusalem
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    command: bash -c "sleep 100000"
+    runtime: nvidia
+    privileged: true
